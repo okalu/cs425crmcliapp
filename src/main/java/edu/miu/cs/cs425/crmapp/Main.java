@@ -1,5 +1,9 @@
 package edu.miu.cs.cs425.crmapp;
 
+import edu.miu.cs.cs425.crmapp.model.Customer;
+
+import java.util.Arrays;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -13,5 +17,12 @@ public class Main {
             // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
             System.out.println("i = " + i);
         }
+
+        var customers = new Customer[] {
+                new Customer(1001, "Anna Smith"),
+                new Customer(2002, "Bob Jones")
+        };
+        Arrays.stream(customers)
+                .forEach(System.out::println);
     }
 }

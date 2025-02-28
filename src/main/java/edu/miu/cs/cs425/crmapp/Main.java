@@ -1,28 +1,26 @@
 package edu.miu.cs.cs425.crmapp;
 
+import edu.miu.cs.cs425.crmapp.data.CustomerDao;
 import edu.miu.cs.cs425.crmapp.model.Customer;
 
 import java.util.Arrays;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome!%n");
-
         for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
             System.out.println("i = " + i);
         }
-
-        var customers = new Customer[] {
-                new Customer(1001, "Anna Smith"),
-                new Customer(2002, "Bob Jones")
-        };
+        var customers = CustomerDao.getInstance().getCustomers();
         Arrays.stream(customers)
                 .forEach(System.out::println);
+    }
+
+    public Customer findCustomerById(Integer customerId) {
+        var customers = CustomerDao.getInstance().getCustomers();
+        return Arrays.stream(customers)
+                .filter(c -> c.getCustomerId().equals(customerId))
+                .findFirst()
+                .orElse(null);
     }
 }

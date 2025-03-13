@@ -12,6 +12,7 @@ public class Main {
             System.out.println("i = " + i);
         }
         var customers = CustomerDao.getInstance().getCustomers();
+        // TODO Add new Customer
         Arrays.stream(customers)
                 .forEach(System.out::println);
     }
